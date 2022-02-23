@@ -1,0 +1,16 @@
+﻿@page "/myoption"
+
+@using Applied_WebApp.Data
+@using Applied_WebApp.SQLite
+
+<PageTitle>My Option Page</PageTitle>
+
+<h3>My Option</h3>
+<h1>Name : @MyRecord.Name</h1>
+<h3>Father Name : @MyRecord.FName</h3>
+<h3>Address : @MyRecord.Address</h3>
+
+@code {
+    CreateDatabase DataBase = new();
+    private MyOptionRecord MyRecord = MyOptionClass.GetMyRecord();
+}

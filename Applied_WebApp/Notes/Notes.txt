@@ -2,3 +2,5 @@
 =======================================================================
 Install-Package Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation -Version 6.0.2
 =======================================================================
+
+https://www.youtube.com/watch?v=sogS0DtejVA

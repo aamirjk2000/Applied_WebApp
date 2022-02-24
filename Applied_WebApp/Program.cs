@@ -9,7 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-
+builder.Services.AddAuthentication().AddCookie("MyCookieAuth", option =>
+  {
+      option.Cookie.Name = "MyCookieAuth";
+  });
 
 var app = builder.Build();
 
@@ -27,6 +30,10 @@ app.UseApplied_Middleware();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

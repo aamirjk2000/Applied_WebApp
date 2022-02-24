@@ -1,0 +1,42 @@
+﻿@page
+@using Microsoft.AspNetCore.Components.Web
+@namespace Applied_WebApp.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@model Applied_WebApp.Pages.Account.LoginModel
+@{
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="Applied_WebApp.styles.css" rel="stylesheet" />
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+</head>
+
+<div class="container border"  style="padding:20px" >
+    <form method="post">
+    <div class="text-danger" asp-validation-summary="ModelOnly" ></div>
+
+        <div class="form-group row">
+             <div class="col-3">    <label asp-for="MyCredential.Username"></label></div>
+             <div class="col-5">  <input type="text" asp-for="MyCredential.Username" class="form-control" /></div> 
+              <span class="text-danger" asp-validation-for="MyCredential.Username"></span>
+        </div>
+        
+
+        <div class="form-group row">
+            <div class="col-3">   <label asp-for="MyCredential.Password"></label>  </div>
+             <div class="col-5">   <input type="password" asp-for="MyCredential.Password" class="form-control" /> </div>
+             <span class="text-danger" asp-validation-for="MyCredential.Password"></span>
+        </div>
+
+        <div class="form-group row">
+             <div class="col-5">  <input type="submit"  class="button btn-primary" value="Login" />   </div>
+        </div>
+
+    </form>
+</div>

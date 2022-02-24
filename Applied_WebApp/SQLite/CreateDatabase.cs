@@ -2,45 +2,47 @@
 
 namespace Applied_WebApp.SQLite
 {
-    interface ICreateDatabase
-    {
-        public SQLiteConnection DefaultConnection();
 
-    }
-
-    public class CreateDatabase : ICreateDatabase
+    public class CreateDatabase
     {
         public static SQLiteConnection MyConnection { get => AppliedConnection(DB_File()); }
-        //private string DB_File = "";
+        public bool DBFile_Exist = false;
         public string MyMessage = "No Message";
 
         public CreateDatabase()
         {
-            CreateAppliedDB();
+            if(File.Exists(DB_File())) { DBFile_Exist=true; }
         }
 
         public static string DB_File()
         {
             return ".\\Data\\AppliedDB.sqlite3";
         }
-        private void CreateAppliedDB()
+        public bool CreateAppliedDB()
         {
-            MyMessage = "Connection has been established";
-            if (!File.Exists(DB_File())) { SQLiteConnection.CreateFile(DB_File()); MyMessage = "Database created."; }
+            string _DB_File = DB_File();
+
+            if (!File.Exists(_DB_File))
+            {
+                SQLiteConnection.CreateFile(_DB_File);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public SQLiteConnection DefaultConnection()
-        {
-            if (MyConnection.State != System.Data.ConnectionState.Open)
-            {
-                MyConnection.Open();
-            }
-            return MyConnection;
-        }
 
         public static SQLiteConnection AppliedConnection(string _DB_File)
         {
-            return new SQLiteConnection("Data Source =" + _DB_File);
+            if(File.Exists(DB_File()))
+            {
+                SQLiteConnection _Connection = new("Data Source =" + _DB_File);
+                _Connection.Open();
+                return _Connection;
+            }
+            return new SQLiteConnection();
         }
     }
 }

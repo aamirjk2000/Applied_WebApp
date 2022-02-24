@@ -1,3 +1,4 @@
+using Applied_WebApp;
 using Applied_WebApp.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -21,6 +22,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseApplied_Middleware();
 
 app.UseStaticFiles();
 
